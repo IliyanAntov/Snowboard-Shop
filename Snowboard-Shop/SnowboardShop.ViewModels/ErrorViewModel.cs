@@ -1,10 +1,10 @@
-using System;
+﻿using System;
 
-namespace SnowboardShop.Models {
-    public class Error {
+namespace SnowboardShop.ViewModels {
+    public class ErrorViewModel {
         public string RequestId { get; set; }
 
         public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
-      
+
     }
 }

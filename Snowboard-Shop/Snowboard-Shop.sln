@@ -3,7 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.438
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnowboardShop", "SnowboardShop\SnowboardShop.csproj", "{603AE46E-355C-41AE-90AA-9D62006DCEF5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SnowboardShop", "SnowboardShop\SnowboardShop.csproj", "{603AE46E-355C-41AE-90AA-9D62006DCEF5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnowboardShop.Data", "SnowboardShop.Data\SnowboardShop.Data.csproj", "{7E8C5F75-4998-40CF-859E-B2451F6B90CF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnowboardShop.Data.Models", "SnowboardShop.Data.Models\SnowboardShop.Data.Models.csproj", "{8FE06AD5-5669-4CC9-B6B7-661AE8A5A864}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnowboardShop.Services", "SnowboardShop.Services\SnowboardShop.Services.csproj", "{418A04A2-D2F4-4E76-9B97-5A1FAFA5EEE2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnowboardShop.ViewModels", "SnowboardShop.ViewModels\SnowboardShop.ViewModels.csproj", "{32A2DACB-5ACE-4676-BC08-8339A37B3CD8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +23,22 @@ Global
 		{603AE46E-355C-41AE-90AA-9D62006DCEF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{603AE46E-355C-41AE-90AA-9D62006DCEF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{603AE46E-355C-41AE-90AA-9D62006DCEF5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E8C5F75-4998-40CF-859E-B2451F6B90CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E8C5F75-4998-40CF-859E-B2451F6B90CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E8C5F75-4998-40CF-859E-B2451F6B90CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E8C5F75-4998-40CF-859E-B2451F6B90CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FE06AD5-5669-4CC9-B6B7-661AE8A5A864}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FE06AD5-5669-4CC9-B6B7-661AE8A5A864}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FE06AD5-5669-4CC9-B6B7-661AE8A5A864}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FE06AD5-5669-4CC9-B6B7-661AE8A5A864}.Release|Any CPU.Build.0 = Release|Any CPU
+		{418A04A2-D2F4-4E76-9B97-5A1FAFA5EEE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{418A04A2-D2F4-4E76-9B97-5A1FAFA5EEE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{418A04A2-D2F4-4E76-9B97-5A1FAFA5EEE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{418A04A2-D2F4-4E76-9B97-5A1FAFA5EEE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32A2DACB-5ACE-4676-BC08-8339A37B3CD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32A2DACB-5ACE-4676-BC08-8339A37B3CD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32A2DACB-5ACE-4676-BC08-8339A37B3CD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32A2DACB-5ACE-4676-BC08-8339A37B3CD8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -11,11 +11,6 @@ using Microsoft.Extensions.Logging;
 namespace SnowboardShop {
     public class Program {
         public static void Main(string[] args) {
-            int b = 2;
-
-            a = 4;
-
-            a = 24;
             CreateWebHostBuilder(args).Build().Run();
         }
 
