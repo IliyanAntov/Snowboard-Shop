@@ -18,4 +18,9 @@
     <ProjectReference Include="..\SnowboardShop.ViewModels\SnowboardShop.ViewModels.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Images\" />
+    <Folder Include="wwwroot\images\" />
+  </ItemGroup>
+
 </Project>

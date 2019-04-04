@@ -14,9 +14,10 @@ namespace SnowboardShop.Services {
             this.context = context;
         }
 
-        public int CreateSnowboard(string name, decimal price, float size, string description, int brandId, Profile profile, int flex) {
+        public int CreateSnowboard(string name, string imagePath, decimal price, float size, string description, int brandId, Profile profile, byte flex) {
             var snowboard = new Snowboard() {
                 Name = name,
+                ImagePath = imagePath,
                 Price = price,
                 Size = size,
                 Description = description,

@@ -6,7 +6,7 @@ using System.Text;
 namespace SnowboardShop.Services.Contracts {
     public interface ISnowboardsService {
 
-        int CreateSnowboard(string name, decimal price, float size, string description, int brandId, Profile Profile, int Flex);
+        int CreateSnowboard(string name, string imagePath, decimal price, float size, string description, int brandId, Profile Profile, byte Flex);
 
     }
 }

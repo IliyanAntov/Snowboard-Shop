@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SnowboardShop.Data;
 
 namespace SnowboardShop.Data.Migrations
 {
     [DbContext(typeof(SnowboardShopDbContext))]
-    partial class SnowboardShopDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190404132100_Flex")]
+    partial class Flex
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -189,8 +191,6 @@ namespace SnowboardShop.Data.Migrations
 
                     b.Property<string>("Description");
 
-                    b.Property<string>("ImagePath");
-
                     b.Property<string>("Name");
 
                     b.Property<decimal>("Price");
@@ -220,8 +220,6 @@ namespace SnowboardShop.Data.Migrations
                     b.Property<string>("Description");
 
                     b.Property<int>("Flex");
-
-                    b.Property<string>("ImagePath");
 
                     b.Property<string>("Lacing")
                         .IsRequired()
@@ -264,8 +262,6 @@ namespace SnowboardShop.Data.Migrations
                     b.Property<string>("Description");
 
                     b.Property<byte>("Flex");
-
-                    b.Property<string>("ImagePath");
 
                     b.Property<string>("Name");
 
