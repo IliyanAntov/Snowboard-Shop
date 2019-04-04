@@ -1,7 +1,10 @@
 ﻿using SnowboardShop.Data;
 using SnowboardShop.Data.Models;
 using SnowboardShop.Services.Contracts;
+using SnowboardShop.ViewModels;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace SnowboardShop.Services {
     public class BrandsService : IBrandsService {
@@ -20,5 +23,8 @@ namespace SnowboardShop.Services {
             return brand.Id;
         }
 
+        public List<ListBrandsViewModel> GetAll() {
+            return this.context.Brands.Select(b => new ListBrandsViewModel { Id = b.Id, Name = b.Name }).ToList();
+        }
     }
 }

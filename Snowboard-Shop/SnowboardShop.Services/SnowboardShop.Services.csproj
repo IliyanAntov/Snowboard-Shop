@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SnowboardShop.Data\SnowboardShop.Data.csproj" />
+    <ProjectReference Include="..\SnowboardShop.ViewModels\SnowboardShop.ViewModels.csproj" />
   </ItemGroup>
 
 </Project>
