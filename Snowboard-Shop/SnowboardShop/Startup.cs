@@ -12,6 +12,8 @@ using Microsoft.EntityFrameworkCore;
 using SnowboardShop.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SnowboardShop.Services.Contracts;
+using SnowboardShop.Services;
 
 namespace SnowboardShop {
     public class Startup {
@@ -37,6 +39,7 @@ namespace SnowboardShop {
                 .AddEntityFrameworkStores<SnowboardShopDbContext>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddScoped<IBrandsService, BrandsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

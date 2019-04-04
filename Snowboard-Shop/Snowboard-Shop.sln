@@ -5,13 +5,13 @@ VisualStudioVersion = 15.0.28307.438
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SnowboardShop", "SnowboardShop\SnowboardShop.csproj", "{603AE46E-355C-41AE-90AA-9D62006DCEF5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnowboardShop.Data", "SnowboardShop.Data\SnowboardShop.Data.csproj", "{7E8C5F75-4998-40CF-859E-B2451F6B90CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SnowboardShop.Data", "SnowboardShop.Data\SnowboardShop.Data.csproj", "{7E8C5F75-4998-40CF-859E-B2451F6B90CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnowboardShop.Data.Models", "SnowboardShop.Data.Models\SnowboardShop.Data.Models.csproj", "{8FE06AD5-5669-4CC9-B6B7-661AE8A5A864}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SnowboardShop.Data.Models", "SnowboardShop.Data.Models\SnowboardShop.Data.Models.csproj", "{8FE06AD5-5669-4CC9-B6B7-661AE8A5A864}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnowboardShop.Services", "SnowboardShop.Services\SnowboardShop.Services.csproj", "{418A04A2-D2F4-4E76-9B97-5A1FAFA5EEE2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SnowboardShop.Services", "SnowboardShop.Services\SnowboardShop.Services.csproj", "{418A04A2-D2F4-4E76-9B97-5A1FAFA5EEE2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnowboardShop.ViewModels", "SnowboardShop.ViewModels\SnowboardShop.ViewModels.csproj", "{32A2DACB-5ACE-4676-BC08-8339A37B3CD8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SnowboardShop.ViewModels", "SnowboardShop.ViewModels\SnowboardShop.ViewModels.csproj", "{32A2DACB-5ACE-4676-BC08-8339A37B3CD8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
