@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SnowboardShop.Data.Models;
 using SnowboardShop.Services.Contracts;
 using SnowboardShop.ViewModels;
 
@@ -27,7 +28,7 @@ namespace SnowboardShop.Controllers
 
         [Authorize]
         [HttpPost]
-        public IActionResult Create(string name, decimal price, float size, string description, int brandId, char profile, int flex) {
+        public IActionResult Create(string name, decimal price, float size, string description, int brandId, Profile profile, int flex) {
             var snowboard = snowboardsService.CreateSnowboard(name, price, size, description, brandId, profile, flex);
             return this.RedirectToAction("Success", "Home");
         }
