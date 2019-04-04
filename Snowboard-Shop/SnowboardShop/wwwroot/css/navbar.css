@@ -1,0 +1,41 @@
+.navbar{
+    margin-top: 15px;
+    margin-left: 0px;
+    background-color: black;
+
+}
+
+.navbar-brand{
+    font-size: 150%;
+}
+
+.navbar .navbar-nav  li  a {
+    color: white;
+    font-size: 200%;
+    height: 80px;
+    line-height: 40px;
+    width: 150px;
+    text-align: center;
+    font-family: 'Anton', sans-serif;
+
+}
+
+.navbar .navbar-nav  li  a:hover {
+    color: grey;
+    background-color: black;
+}
+
+.navbar .navbar-nav  li  a:focus {
+    background-color: black;
+}
+
+
+li.active a:only-child {
+    color: grey;
+}
+
+.logo{
+  margin-right: 10px;
+  width: 15ex;
+  height: auto;
+}

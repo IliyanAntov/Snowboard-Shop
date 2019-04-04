@@ -19,8 +19,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Images\" />
-    <Folder Include="wwwroot\images\" />
+    <Content Update="Views\Home\Shop.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
   </ItemGroup>
 
 </Project>

@@ -1,0 +1,41 @@
+body{
+    background-color: black;
+}
+
+.mapouter{
+  margin-top: 250px;
+  margin-left: auto;
+  margin-right: 100px;
+
+}
+
+.wrapper{
+     overflow: hidden;
+}
+
+.schedule {
+    color: white;
+    padding-top: 325px;
+    width: 300px;
+    float: left;
+    font-size: 150%;
+    margin-left: 300px;
+    font-family: Impact, Charcoal, sans-serif;
+}
+
+
+.businesshours{
+    font-size: 175%;
+    text-align: center;
+}
+
+.hours{
+    margin-left: 150px;
+    position: absolute;
+
+
+}
+.day{
+    position: absolute;
+
+}

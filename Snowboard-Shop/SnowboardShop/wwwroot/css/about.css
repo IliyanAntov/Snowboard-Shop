@@ -1,0 +1,12 @@
+body{
+  background-color: black;
+}
+
+.info{
+  position: absolute;
+  color: white;
+  font-size: 300%;
+  top: 50%;
+  left: 50%;
+  margin: -50px 0 0 -250px;
+}

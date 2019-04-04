@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace SnowboardShop.ViewModels {
-    public class CreateBrandViewModel {
+    public class ShopPageViewModel {
 
-        public string Name { get; set; }
-
+        public List<ListProductsViewModel> Products { get; set; }
     }
 }
