@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SnowboardShop.Data;
 
 namespace SnowboardShop.Data.Migrations
 {
     [DbContext(typeof(SnowboardShopDbContext))]
-    partial class SnowboardShopDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190405170251_ShoppingCart")]
+    partial class ShoppingCart
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -69,6 +71,9 @@ namespace SnowboardShop.Data.Migrations
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired();
+
                     b.Property<string>("Email")
                         .HasMaxLength(256);
 
@@ -107,6 +112,8 @@ namespace SnowboardShop.Data.Migrations
                         .HasName("UserNameIndex");
 
                     b.ToTable("AspNetUsers");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -178,6 +185,68 @@ namespace SnowboardShop.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("SnowboardShop.Data.Models.Binding", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("BrandId");
+
+                    b.Property<DateTime?>("DeletedOn");
+
+                    b.Property<string>("Description");
+
+                    b.Property<string>("ImagePath");
+
+                    b.Property<string>("Name");
+
+                    b.Property<decimal>("Price");
+
+                    b.Property<float>("Size");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasConversion(new ValueConverter<string, string>(v => default(string), v => default(string), new ConverterMappingHints(size: 1)));
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BrandId");
+
+                    b.ToTable("Bindings");
+                });
+
+            modelBuilder.Entity("SnowboardShop.Data.Models.Boot", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("BrandId");
+
+                    b.Property<DateTime?>("DeletedOn");
+
+                    b.Property<string>("Description");
+
+                    b.Property<int>("Flex");
+
+                    b.Property<string>("ImagePath");
+
+                    b.Property<string>("Lacing")
+                        .IsRequired()
+                        .HasConversion(new ValueConverter<string, string>(v => default(string), v => default(string), new ConverterMappingHints(size: 1)));
+
+                    b.Property<string>("Name");
+
+                    b.Property<decimal>("Price");
+
+                    b.Property<float>("Size");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BrandId");
+
+                    b.ToTable("Boots");
+                });
+
             modelBuilder.Entity("SnowboardShop.Data.Models.Brand", b =>
                 {
                     b.Property<int>("Id")
@@ -190,27 +259,19 @@ namespace SnowboardShop.Data.Migrations
                     b.ToTable("Brands");
                 });
 
-            modelBuilder.Entity("SnowboardShop.Data.Models.CartItem", b =>
+            modelBuilder.Entity("SnowboardShop.Data.Models.ShoppingCart", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("ProductId");
-
-                    b.Property<int>("Quantity");
-
-                    b.Property<int>("ShoppingCartId");
+                    b.Property<int>("UserId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProductId");
-
-                    b.HasIndex("ShoppingCartId");
-
-                    b.ToTable("CartItems");
+                    b.ToTable("ShoppingCarts");
                 });
 
-            modelBuilder.Entity("SnowboardShop.Data.Models.Product", b =>
+            modelBuilder.Entity("SnowboardShop.Data.Models.Snowboard", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -221,8 +282,7 @@ namespace SnowboardShop.Data.Migrations
 
                     b.Property<string>("Description");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired();
+                    b.Property<byte>("Flex");
 
                     b.Property<string>("ImagePath");
 
@@ -230,71 +290,29 @@ namespace SnowboardShop.Data.Migrations
 
                     b.Property<decimal>("Price");
 
+                    b.Property<int>("Profile");
+
                     b.Property<float>("Size");
 
                     b.HasKey("Id");
 
                     b.HasIndex("BrandId");
 
-                    b.ToTable("Product");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Product");
+                    b.ToTable("Snowboards");
                 });
 
-            modelBuilder.Entity("SnowboardShop.Data.Models.ShoppingCart", b =>
+            modelBuilder.Entity("SnowboardShop.Data.Models.User", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
-                    b.Property<string>("UserId");
+                    b.Property<int>("ShoppingCartId");
 
-                    b.HasKey("Id");
+                    b.HasIndex("ShoppingCartId")
+                        .IsUnique();
 
-                    b.HasIndex("UserId");
+                    b.ToTable("User");
 
-                    b.ToTable("ShoppingCarts");
-                });
-
-            modelBuilder.Entity("SnowboardShop.Data.Models.Binding", b =>
-                {
-                    b.HasBaseType("SnowboardShop.Data.Models.Product");
-
-                    b.Property<string>("Type")
-                        .IsRequired()
-                        .HasConversion(new ValueConverter<string, string>(v => default(string), v => default(string), new ConverterMappingHints(size: 1)));
-
-                    b.ToTable("Binding");
-
-                    b.HasDiscriminator().HasValue("Binding");
-                });
-
-            modelBuilder.Entity("SnowboardShop.Data.Models.Boot", b =>
-                {
-                    b.HasBaseType("SnowboardShop.Data.Models.Product");
-
-                    b.Property<int>("Flex");
-
-                    b.Property<string>("Lacing")
-                        .IsRequired()
-                        .HasConversion(new ValueConverter<string, string>(v => default(string), v => default(string), new ConverterMappingHints(size: 1)));
-
-                    b.ToTable("Boot");
-
-                    b.HasDiscriminator().HasValue("Boot");
-                });
-
-            modelBuilder.Entity("SnowboardShop.Data.Models.Snowboard", b =>
-                {
-                    b.HasBaseType("SnowboardShop.Data.Models.Product");
-
-                    b.Property<byte>("Flex")
-                        .HasColumnName("Snowboard_Flex");
-
-                    b.Property<int>("Profile");
-
-                    b.ToTable("Snowboard");
-
-                    b.HasDiscriminator().HasValue("Snowboard");
+                    b.HasDiscriminator().HasValue("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -342,20 +360,7 @@ namespace SnowboardShop.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("SnowboardShop.Data.Models.CartItem", b =>
-                {
-                    b.HasOne("SnowboardShop.Data.Models.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("SnowboardShop.Data.Models.ShoppingCart", "ShoppingCart")
-                        .WithMany()
-                        .HasForeignKey("ShoppingCartId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("SnowboardShop.Data.Models.Product", b =>
+            modelBuilder.Entity("SnowboardShop.Data.Models.Binding", b =>
                 {
                     b.HasOne("SnowboardShop.Data.Models.Brand", "Brand")
                         .WithMany()
@@ -363,11 +368,28 @@ namespace SnowboardShop.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("SnowboardShop.Data.Models.ShoppingCart", b =>
+            modelBuilder.Entity("SnowboardShop.Data.Models.Boot", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
+                    b.HasOne("SnowboardShop.Data.Models.Brand", "Brand")
                         .WithMany()
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("BrandId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("SnowboardShop.Data.Models.Snowboard", b =>
+                {
+                    b.HasOne("SnowboardShop.Data.Models.Brand", "Brand")
+                        .WithMany()
+                        .HasForeignKey("BrandId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("SnowboardShop.Data.Models.User", b =>
+                {
+                    b.HasOne("SnowboardShop.Data.Models.ShoppingCart", "ShoppingCart")
+                        .WithOne("User")
+                        .HasForeignKey("SnowboardShop.Data.Models.User", "ShoppingCartId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

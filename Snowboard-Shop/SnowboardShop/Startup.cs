@@ -14,6 +14,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SnowboardShop.Services.Contracts;
 using SnowboardShop.Services;
+using SnowboardShop.Data.Models;
 
 namespace SnowboardShop {
     public class Startup {
@@ -42,6 +43,7 @@ namespace SnowboardShop {
             services.AddScoped<IBrandsService, BrandsService>();
             services.AddScoped<ISnowboardsService, SnowboardsService>();
             services.AddScoped<IProductsService, ProductsService>();
+            services.AddScoped<ICartsService, CartsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
