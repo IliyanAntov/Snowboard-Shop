@@ -1,8 +1,11 @@
 ﻿using SnowboardShop.Data;
 using SnowboardShop.Data.Models;
 using SnowboardShop.Services.Contracts;
+using SnowboardShop.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace SnowboardShop.Services {
@@ -30,6 +33,23 @@ namespace SnowboardShop.Services {
             context.SaveChanges();
 
             return snowboard.Id;
+        }
+
+        public SnowboardDetailsViewModel GetDetails(int id) {
+            var snowboard = this.context.Snowboards.FirstOrDefault(b => b.Id == id);
+            var brand = this.context.Brands.FirstOrDefault(b => b.Id == snowboard.BrandId).Name;
+            var model = new SnowboardDetailsViewModel {
+                Id = id,
+                Name = snowboard.Name,
+                ImagePath = Path.GetFileName(snowboard.ImagePath),
+                Size = snowboard.Size,
+                BrandName = brand,
+                Description = snowboard.Description,
+                Flex = snowboard.Flex,
+                Price = Math.Round(snowboard.Price, 2),
+                Profile = snowboard.Profile.ToString()
+            };
+            return model;
         }
     }
 }

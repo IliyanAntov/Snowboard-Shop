@@ -5,6 +5,6 @@ using System.Text;
 namespace SnowboardShop.ViewModels {
     public class ShopPageViewModel {
 
-        public List<ListProductsViewModel> Products { get; set; }
+        public List<ListProductViewModel> Products { get; set; }
     }
 }

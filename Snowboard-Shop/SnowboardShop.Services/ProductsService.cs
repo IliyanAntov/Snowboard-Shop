@@ -18,7 +18,7 @@ namespace SnowboardShop.Services {
             this.context = context;
         }
 
-        public List<ListProductsViewModel> GetAll() {
+        public List<ListProductViewModel> GetAll() {
             var snowboards = GetViewModel(new List<Product>(this.context.Snowboards));
             var bindings = GetViewModel(new List<Product>(this.context.Bindings));
             var boots = GetViewModel(new List<Product>(this.context.Boots));
@@ -28,10 +28,11 @@ namespace SnowboardShop.Services {
             return result;
         }
 
-        private List<ListProductsViewModel> GetViewModel(List<Product> products) {
+        private List<ListProductViewModel> GetViewModel(List<Product> products) {
             return products
-                .Select(b => 
-                    new ListProductsViewModel {
+                .Select(b =>
+                    new ListProductViewModel {
+                        Id = b.Id,
                         Name = b.Name,
                         ImageName = Path.GetFileName(b.ImagePath),
                         Price = Math.Round(b.Price,2) })

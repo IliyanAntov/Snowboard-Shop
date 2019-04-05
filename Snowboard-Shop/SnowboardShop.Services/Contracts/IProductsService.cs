@@ -6,7 +6,7 @@ using System.Text;
 namespace SnowboardShop.Services.Contracts {
     public interface IProductsService {
 
-        List<ListProductsViewModel> GetAll();
+        List<ListProductViewModel> GetAll();
 
     }
 }

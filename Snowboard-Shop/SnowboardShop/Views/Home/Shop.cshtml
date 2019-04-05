@@ -4,7 +4,8 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="row-fluid" style="margin-top: 5rem">
+<link rel="stylesheet" href="~/css/shop.css" />
+<div class="row-fluid">
     @foreach (var product in Model.Products) {
         <div class="col-sm-4" style="margin-bottom: 5rem">
             <div class="card-columns-fluid">
@@ -13,7 +14,7 @@
                     <div class="card-body align-items-center">
                         <h2 class="card-text">@product.Name</h2>
                         <h4 class="card-title">$@product.Price</h4>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <a asp-route-id="@product.Id" asp-area="" asp-action="Details" asp-controller="Snowboard" class="btn btn-default" role="button">Details</a>
                     </div>
                 </div>
             </div>

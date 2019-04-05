@@ -1,0 +1,33 @@
+﻿@model SnowboardShop.ViewModels.SnowboardDetailsViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+
+<div class="col-sm-4" style="margin-bottom: 5rem">
+    <div class="card-columns-fluid">
+        <div class="card card-block d-flex" style="width: 23rem; white-space:nowrap">
+            <img class="card-img-bottom" align= "left" style="width: 200%; height: 35vw; object-fit: cover; margin-right: 10rem;" src="~/images/@Model.ImagePath" alt="@Model.Name">
+            <div class="card-body align-items-center" align="right">
+                <h1 class="card-text">@Model.Name</h1>
+                <h3>Price:</h3>
+                <h4 class="card-title">$@Model.Price</h4>
+                <h3>Description:</h3>
+                <h4 class="card-title">@Model.Description</h4>
+                <h3>Profile:</h3>
+                <h4 class="card-title">@Model.Profile</h4>
+                <h3>Flex rating:</h3>
+                <h4 class="card-title">@Model.Flex</h4>
+                <h3>Size:</h3>
+                <h4 class="card-title">@Model.Size cm</h4>
+                <h3>Brand:</h3>
+                <h4 class="card-title">@Model.BrandName</h4>
+
+                <a asp-route-id="@Model.Id" asp-area="" asp-action="AddToCart" asp-controller="Snowboard" class="btn btn-default" role="button">Add to cart</a>
+            </div>
+        </div>
+    </div>
+</div>

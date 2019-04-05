@@ -31,6 +31,11 @@ namespace SnowboardShop.Controllers
             return View(model);
         }
 
+        public IActionResult Details(int id) {
+            var model = snowboardsService.GetDetails(id);
+            return this.View(model);
+        }
+
         [Authorize]
         [HttpPost]
         public IActionResult Create(string name, [FromForm] IFormFile image, decimal price, float size, string description, int brandId, Profile profile, byte flex) {
