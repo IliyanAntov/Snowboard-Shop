@@ -1,0 +1,27 @@
+﻿@model SnowboardShop.ViewModels.ShoppingCartViewModel
+
+@{
+    ViewData["Title"] = "Cart";
+}
+
+<h2>Cart</h2>
+
+@foreach (var item in Model.Items) {
+    <div class="col-sm-4" style="margin-bottom: 5rem">
+        <div class="card-columns-fluid">
+            <div class="card card-block d-flex" style="width: 23rem;">
+                <div class="card-body align-items-center">
+                    <h3>Item:</h3>
+                    <h4 class="card-text">@item.Name</h4>
+                    <h3>Quantity:</h3>
+                    <h4 class="card-title">@item.Quantity</h4>
+                    <h3>Single price:</h3>
+                    <h4 class="card-title">$@item.Price</h4>
+                    <h3>Total price:</h3>
+                    <h4 class="card-title">$@(item.Price*item.Quantity)</h4>
+                    <a asp-route-id="@item.Id" asp-area="" asp-action="Remove" asp-controller="Cart" class="btn btn-default" role="button">Remove</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}

@@ -12,6 +12,7 @@ using SnowboardShop.Data;
 using SnowboardShop.Data.Models;
 using SnowboardShop.Services;
 using SnowboardShop.Services.Contracts;
+using SnowboardShop.ViewModels;
 
 namespace SnowboardShop.Controllers
 {
@@ -28,7 +29,21 @@ namespace SnowboardShop.Controllers
         {
             var username = this.User.Identity.Name;
             cartsService.AddItem(id, username);
-            return RedirectToAction("Success", "Home");
+            return RedirectToAction("Cart", "Cart");
+        }
+
+        [Authorize]
+        public IActionResult Cart() {
+            var model = new ShoppingCartViewModel() {
+                Items = cartsService.GetAll()
+            };
+            return View(model);
+        }
+
+        [Authorize]
+        public IActionResult Remove(int id) {
+            cartsService.RemoveItem(id);
+            return RedirectToAction("Cart", "Cart");
         }
     }
 }
