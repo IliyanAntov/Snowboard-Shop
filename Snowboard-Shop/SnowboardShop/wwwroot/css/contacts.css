@@ -2,11 +2,11 @@ body{
     background-color: black;
 }
 
-.mapouter{
-  margin-top: 250px;
-  margin-left: auto;
-  margin-right: 100px;
-
+.mapouter {
+    padding-top: 15rem;
+    margin-bottom: 30rem;
+    margin-left: auto;
+    margin-right: 100px;
 }
 
 .wrapper{
@@ -15,7 +15,7 @@ body{
 
 .schedule {
     color: white;
-    padding-top: 325px;
+    padding-top: 20rem;
     width: 300px;
     float: left;
     font-size: 150%;

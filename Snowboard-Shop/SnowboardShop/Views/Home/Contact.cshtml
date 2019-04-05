@@ -1,17 +1,41 @@
 ﻿@{
     ViewData["Title"] = "Contact";
 }
-<h2>@ViewData["Title"]</h2>
-<h3>@ViewData["Message"]</h3>
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
+<link rel="stylesheet" href="~/css/contacts.css" />
 
-<address>
-    <strong>Support:</strong> <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+<div class="wrapper">
+    <div class="schedule">
+        <span class="businesshours"> Business hours <br><br> </span>
+        <span class="day">Monday:</span><span class="hours">9:00 - 17:00</span><br>
+        <span class="day">Tuesday:</span><span class="hours">9:00 - 17:00</span><br>
+        <span class="day">Wednesday:</span><span class="hours">9:00 - 17:00</span><br>
+        <span class="day">Thursday:</span><span class="hours">9:00 - 17:00</span><br>
+        <span class="day">Friday:</span><span class="hours">9:00 - 17:00</span><br>
+        <span class="day">Saturday:</span><span class="hours">9:00 - 14:00</span><br>
+        <span class="day ">Sunday:</span><span class="hours">Closed<br>
+    </div>
+
+    <div class="mapbox">
+        <div class="mapouter">
+            <div class="gmap_canvas">
+                <iframe width="700" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=TUES&t=&z=15&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+                <a href="https://www.pureblack.de">internetseite erstellen lassen</a>
+            </div>
+            <style>
+                .mapouter {
+                    text-align: right;
+                    height: 500px;
+                    width: 700px;
+                }
+
+                .gmap_canvas {
+                    overflow: hidden;
+                    background: none !important;
+                    height: 500px;
+                    width: 700px;
+                }
+            </style>
+        </div>
+    </div>
+</div>

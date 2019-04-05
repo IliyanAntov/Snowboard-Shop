@@ -35,3 +35,9 @@ body {
         display: none;
     }
 }
+
+#logo {
+    margin-right: 10px;
+    width: 15ex;
+    height: auto;
+}

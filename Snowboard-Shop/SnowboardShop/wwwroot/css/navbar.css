@@ -1,41 +1,69 @@
-.navbar{
-    margin-top: 15px;
-    margin-left: 0px;
+.navbar {
+
+    padding-left: 5rem;
+    padding-right: 5rem;
     background-color: black;
-
 }
 
-.navbar-brand{
-    font-size: 150%;
+.body-content{
+    padding-top:5rem;
 }
 
-.navbar .navbar-nav  li  a {
-    color: white;
+.navbar-nav li .dropdown-menu a {
+    margin-bottom: 10px;
+    align-content: center;
+    vertical-align: middle;
+}
+.navbar-nav li .dropdown-menu {
+    text-align: center;
+    background-color: #0a0c0c;
+}
+
+#navbarDropdown:focus {
+    background-color: #0a0c0c;
+}
+.navbar-nav li .dropdown-menu a {
+    color: grey;
+}
+
+
+.navbar-brand {
+    font-size: 100%;
+}
+
+.navbar-nav .nav-item a{
     font-size: 200%;
-    height: 80px;
-    line-height: 40px;
+    /*height: 80px;*/
+    line-height: 50px;
     width: 150px;
     text-align: center;
     font-family: 'Anton', sans-serif;
-
+}
+.navbar-nav li button {
+    font-size: 200%;
+    line-height: 50px;
+    width: 150px;
+    text-align: center;
+    font-family: 'Anton', sans-serif;
 }
 
-.navbar .navbar-nav  li  a:hover {
-    color: grey;
-    background-color: black;
+.navbar .navbar-nav li a:hover, .navbar-nav li button:hover {
+    text-decoration: none;
+    color: white;
+    /*background-color: black;*/
 }
 
 .navbar .navbar-nav  li  a:focus {
     background-color: black;
 }
 
-
-li.active a:only-child {
-    color: grey;
+.logo {
+    margin-right: 10px;
+    width: 8rem;
+    height: auto;
 }
 
-.logo{
-  margin-right: 10px;
-  width: 15ex;
-  height: auto;
+footer p{
+    color: white;
+    text-align: center
 }
