@@ -26,5 +26,7 @@
     </div>
 }
 
-    <h1>Grand total: $@Model.Items.Sum(m => m.Price*m.Quantity)</h1>
+@if (Model.Items.Count > 0) {
+    <h1>Grand total: $@Model.Items.Sum(m => m.Price * m.Quantity)</h1>
     <a asp-route-id="@Model.CartId" asp-area="" asp-action="Checkout" asp-controller="Cart" class="btn btn-lg btn-primary" role="button">Checkout</a>
+}

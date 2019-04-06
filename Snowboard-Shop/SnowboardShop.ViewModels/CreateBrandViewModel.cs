@@ -7,6 +7,7 @@ namespace SnowboardShop.ViewModels {
     public class CreateBrandViewModel {
 
         [Required]
+        [Display(Name = "Brand name")]
         public string Name { get; set; }
 
     }
