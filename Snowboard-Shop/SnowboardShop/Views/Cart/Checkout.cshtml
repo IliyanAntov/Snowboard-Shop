@@ -8,6 +8,7 @@
 
 <h4>ShoppingCartCheckoutViewModel</h4>
 <hr />
+
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Checkout">
@@ -44,12 +45,11 @@
             <h1>$@Model.TotalPrice</h1>
             <div class="form-group">
                 <input type="submit" value="Confirm" class="btn btn-lg btn-primary" />
-                
+
             </div>
         </form>
     </div>
 </div>
-
 <div>
     <a asp-action="Cart">Back to Cart</a>
 </div>

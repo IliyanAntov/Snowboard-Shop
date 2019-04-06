@@ -1,4 +1,6 @@
-﻿using SnowboardShop.Data;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using SnowboardShop.Data;
 using SnowboardShop.Data.Models;
 using SnowboardShop.Services.Contracts;
 using SnowboardShop.ViewModels;

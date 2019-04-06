@@ -35,7 +35,7 @@ namespace SnowboardShop.Controllers
             var model = new ShoppingCartViewModel() {
                 Items = cartsService.GetAll()
             };
-            model.CartId = cartsService.GetShoppingCartId(model.Items.First().Id);
+            model.CartId = cartsService.GetShoppingCartId(this.User.Identity.Name);
             return View(model);
         }
 
@@ -52,6 +52,7 @@ namespace SnowboardShop.Controllers
         [Authorize]
         [HttpPost]
         public IActionResult Checkout(string firstName, string lastName, string phoneNumber, string city, string address, int shoppingCartId) {
+
             cartsService.PlaceOrder(firstName, lastName, phoneNumber, city, address, shoppingCartId);
             return RedirectToAction("Cart", "Cart");
         }

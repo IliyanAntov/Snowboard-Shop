@@ -25,16 +25,9 @@ namespace SnowboardShop.Services {
 
         public int AddItem(int productId, string username) {
 
-            string userId = userManager.Users.FirstOrDefault(u => u.UserName == username).Id;
+            CreateCart(username);
 
-            if (this.context.ShoppingCarts.FirstOrDefault(c => c.UserId == userId) == null) {
-                this.context.ShoppingCarts.Add(new ShoppingCart {
-                    User = this.context.Users.FirstOrDefault(u => u.UserName == username),
-                    UserId = userId
-                });
-                context.SaveChanges();
-            }
-            var shoppingCartId = this.context.ShoppingCarts.FirstOrDefault(c => c.UserId == userId).Id;
+            var shoppingCartId = this.context.ShoppingCarts.FirstOrDefault(c => c.User.UserName == username).Id;
 
             CartItem item = this.context.CartItems.Where(i => i.ShoppingCartId == shoppingCartId).FirstOrDefault(i => i.ProductId == productId);
 
@@ -73,8 +66,12 @@ namespace SnowboardShop.Services {
 
         }
 
-        public int GetShoppingCartId(int itemId) {
-            return this.context.CartItems.FirstOrDefault(i => i.Id == itemId).ShoppingCartId;
+        public int GetShoppingCartId(string username) {
+
+            if (this.context.ShoppingCarts.FirstOrDefault(c => c.User.UserName == username) == null) {
+                CreateCart(username);
+            }
+            return this.context.ShoppingCarts.FirstOrDefault(c => c.User.UserName == username).Id;
         }
 
         public List<CartItem> GetAllItemsInCart(int cartId) {
@@ -94,9 +91,21 @@ namespace SnowboardShop.Services {
                 ShoppingCartId = shoppingCartId,
                 ShoppingCart = this.context.ShoppingCarts.FirstOrDefault(c => c.Id == shoppingCartId)
             };
+            this.context.CartItems.RemoveRange(GetAllItemsInCart(shoppingCartId));
             this.context.Orders.Add(order);
             context.SaveChanges();
             return order.Id;
+        }
+
+        private void CreateCart(string username) {
+            IdentityUser user = this.context.Users.FirstOrDefault(u => u.UserName == username);
+            if (this.context.ShoppingCarts.FirstOrDefault(c => c.User.UserName == username) == null) {
+                this.context.ShoppingCarts.Add(new ShoppingCart {
+                    User = this.context.Users.FirstOrDefault(u => u.UserName == username),
+                    UserId = user.Id
+                });
+                context.SaveChanges();
+            }
         }
     }
 }

@@ -7,7 +7,7 @@ using System.Text;
 namespace SnowboardShop.Services.Contracts {
     public interface ICartsService {
 
-        int GetShoppingCartId(int itemId);
+        int GetShoppingCartId(string username);
 
         List<ShoppingCartItemViewModel> GetAll();
 
