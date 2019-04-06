@@ -44,6 +44,7 @@ namespace SnowboardShop {
             services.AddScoped<ISnowboardsService, SnowboardsService>();
             services.AddScoped<IProductsService, ProductsService>();
             services.AddScoped<ICartsService, CartsService>();
+            services.AddScoped<IOrdersService, OrdersService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

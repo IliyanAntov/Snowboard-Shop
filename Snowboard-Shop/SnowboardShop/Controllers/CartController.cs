@@ -32,10 +32,11 @@ namespace SnowboardShop.Controllers
 
         [Authorize]
         public IActionResult Cart() {
+            var cartId = cartsService.GetShoppingCartId(this.User.Identity.Name);
             var model = new ShoppingCartViewModel() {
-                Items = cartsService.GetAll()
+                Items = cartsService.GetViewModel(cartId)
             };
-            model.CartId = cartsService.GetShoppingCartId(this.User.Identity.Name);
+            model.CartId = cartId;
             return View(model);
         }
 

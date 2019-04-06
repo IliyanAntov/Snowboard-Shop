@@ -16,11 +16,9 @@ namespace SnowboardShop.Services {
     public class CartsService : ICartsService {
 
         private SnowboardShopDbContext context;
-        private readonly UserManager<IdentityUser> userManager;
 
-        public CartsService(SnowboardShopDbContext context, UserManager<IdentityUser> userManager) {
+        public CartsService(SnowboardShopDbContext context) {
             this.context = context;
-            this.userManager = userManager;
         }
 
         public int AddItem(int productId, string username) {
@@ -31,12 +29,13 @@ namespace SnowboardShop.Services {
 
             CartItem item = this.context.CartItems.Where(i => i.ShoppingCartId == shoppingCartId).FirstOrDefault(i => i.ProductId == productId);
 
-            if (item == null) {
+            if (item == null || item.Placed == true) {
                 var newItem = new CartItem() {
                     ProductId = productId,
                     ShoppingCart = this.context.ShoppingCarts.FirstOrDefault(c => c.Id == shoppingCartId),
                     ShoppingCartId = shoppingCartId,
                     Quantity = 1
+                    
                 };
                 this.context.CartItems.Add(newItem);
             }
@@ -55,8 +54,8 @@ namespace SnowboardShop.Services {
             return item.Id;
         }
 
-        public List<ShoppingCartItemViewModel> GetAll() {
-            return this.context.CartItems
+        public List<ShoppingCartItemViewModel> GetViewModel(int cartId) {
+            return this.context.CartItems.Where(c => c.ShoppingCartId == cartId && c.Placed == false)
                 .Select(i => new ShoppingCartItemViewModel() {
                     Id = i.Id,
                     Name = i.Product.Name,
@@ -75,7 +74,7 @@ namespace SnowboardShop.Services {
         }
 
         public List<CartItem> GetAllItemsInCart(int cartId) {
-            return this.context.CartItems.Include(i => i.Product).Where(i => i.ShoppingCartId == cartId).ToList();
+            return this.context.CartItems.Include(i => i.Product).Where(i => i.ShoppingCartId == cartId).Where(i => i.Placed == false).ToList();
 
         }
 
@@ -91,21 +90,30 @@ namespace SnowboardShop.Services {
                 ShoppingCartId = shoppingCartId,
                 ShoppingCart = this.context.ShoppingCarts.FirstOrDefault(c => c.Id == shoppingCartId)
             };
-            this.context.CartItems.RemoveRange(GetAllItemsInCart(shoppingCartId));
+            var items = GetAllItemsInCart(shoppingCartId);
+            foreach (var item in items) {
+                item.Placed = true;
+                this.context.Update(item);
+            }
+
+            var user = this.context.ShoppingCarts.Include(c => c.User).FirstOrDefault(c => c.Id == shoppingCartId).User;
+            CreateCart(user.UserName);
+
             this.context.Orders.Add(order);
             context.SaveChanges();
             return order.Id;
         }
 
         private void CreateCart(string username) {
+
             IdentityUser user = this.context.Users.FirstOrDefault(u => u.UserName == username);
-            if (this.context.ShoppingCarts.FirstOrDefault(c => c.User.UserName == username) == null) {
-                this.context.ShoppingCarts.Add(new ShoppingCart {
-                    User = this.context.Users.FirstOrDefault(u => u.UserName == username),
-                    UserId = user.Id
-                });
-                context.SaveChanges();
-            }
+            this.context.ShoppingCarts.Add(new ShoppingCart {
+                User = this.context.Users.FirstOrDefault(u => u.UserName == username),
+                UserId = user.Id
+            });
+            context.SaveChanges();
+
         }
+
     }
 }

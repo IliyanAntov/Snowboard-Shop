@@ -9,11 +9,11 @@ namespace SnowboardShop.Services.Contracts {
 
         int GetShoppingCartId(string username);
 
-        List<ShoppingCartItemViewModel> GetAll();
-
         int AddItem(int productId, string username);
 
         int RemoveItem(int id);
+
+        List<ShoppingCartItemViewModel> GetViewModel(int cartId);
 
         List<CartItem> GetAllItemsInCart(int cartId);
 

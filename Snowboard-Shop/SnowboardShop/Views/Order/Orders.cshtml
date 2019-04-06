@@ -1,0 +1,31 @@
+﻿@model SnowboardShop.ViewModels.OrderListViewModel
+
+@{
+    ViewData["Title"] = "Orders";
+}
+
+<h1>Orders</h1>
+
+@foreach (var order in Model.Orders) {
+    <div class="container">
+        <ul class="list-group list-group-horizontal">
+            <li class="list-group-item">Name: @(order.FirstName + " " + order.LastName)</li>
+            <li class="list-group-item">Phone number: @order.PhoneNumber</li>
+            <li class="list-group-item">City: @order.City</li>
+            <li class="list-group-item">Address: @order.Address</li>
+            <li class="list-group-item">TotalPrice: @order.TotalPrice</li>
+        </ul>
+    </div>
+    @foreach (var item in order.Items) {
+        <br />
+        <div class="container">
+            <ul class="list-group list-group-horizontal">
+                <li class="list-group-item">@item.Name</li>
+                <li class="list-group-item">@item.Price</li>
+                <li class="list-group-item">@item.Quantity</li>
+            </ul>
+        </div>
+        <br />
+    }
+}
+

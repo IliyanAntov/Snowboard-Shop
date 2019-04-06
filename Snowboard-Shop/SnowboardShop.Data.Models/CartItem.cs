@@ -9,6 +9,8 @@ namespace SnowboardShop.Data.Models {
 
         public int Quantity { get; set; }
 
+        public bool Placed { get; set; }
+
         public int ProductId { get; set; }
         public Product Product { get; set; }
 
