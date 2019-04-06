@@ -27,7 +27,7 @@ namespace SnowboardShop.Controllers
         /// Creates an OrderListViewModel and returns the Orders view
         /// </summary>
         /// <returns>OrdersView</returns>
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public IActionResult Orders()
         {
             var model = new OrderListViewModel() {

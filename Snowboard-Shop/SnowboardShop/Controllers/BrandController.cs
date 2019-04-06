@@ -25,7 +25,7 @@ namespace SnowboardShop.Controllers
         /// Returns the Create view
         /// </summary>
         /// <returns>Create View</returns>
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             return View();
@@ -36,7 +36,7 @@ namespace SnowboardShop.Controllers
         /// </summary>
         /// <param name="name">Brand name</param>
         /// <returns>Success view</returns>
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public IActionResult Create(string name) {
 

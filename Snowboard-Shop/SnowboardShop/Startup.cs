@@ -36,8 +36,12 @@ namespace SnowboardShop {
             services.AddDbContext<SnowboardShopDbContext>(options =>
                 options.UseMySql(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>()
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddRoleManager<RoleManager<IdentityRole>>()
+                .AddDefaultUI()
+                .AddDefaultTokenProviders()
                 .AddEntityFrameworkStores<SnowboardShopDbContext>();
+
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddScoped<IBrandsService, BrandsService>();
@@ -48,7 +52,7 @@ namespace SnowboardShop {
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env) {
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider serviceProvider) {
             if (env.IsDevelopment()) {
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
@@ -70,8 +74,43 @@ namespace SnowboardShop {
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+            CreateRoles(serviceProvider).Wait();
         }
 
+        private async Task CreateRoles(IServiceProvider serviceProvider) {
+            //initializing custom roles 
+            var RoleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+            var UserManager = serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
+            string[] roleNames = { "Admin" };
+            IdentityResult roleResult;
+
+            foreach (var roleName in roleNames) {
+                var roleExist = await RoleManager.RoleExistsAsync(roleName);
+                if (!roleExist) {
+                    //create the roles and seed them to the database: Question 1
+                    roleResult = await RoleManager.CreateAsync(new IdentityRole(roleName));
+                }
+            }
+
+            //Here you could create a super user who will maintain the web app
+            var poweruser = new IdentityUser {
+
+                UserName = "admin@email.com",
+                Email = "admin@email.com"
+            };
+            //Ensure you have these values in your appsettings.json file
+            string userPWD = "#1234aA"; 
+            var _user = await UserManager.FindByEmailAsync("admin@email.com"); 
+
+            if (_user == null) {
+                var createPowerUser = await UserManager.CreateAsync(poweruser, userPWD);
+                if (createPowerUser.Succeeded) {
+                    //here we tie the new user to the role
+                    await UserManager.AddToRoleAsync(poweruser, "Admin");
+
+                }
+            }
+        }
 
     }
 }

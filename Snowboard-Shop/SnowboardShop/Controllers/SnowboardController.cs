@@ -38,7 +38,7 @@ namespace SnowboardShop.Controllers
         /// Creates a CreateSnowboardViewModel and returns the Create view
         /// </summary>
         /// <returns>Create view</returns>
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public IActionResult Create() {
             var model = new CreateSnowboardViewModel() { Brands = brandsService.GetAllBrandsViewModel()};
             return View(model);
@@ -66,7 +66,7 @@ namespace SnowboardShop.Controllers
         /// <param name="profile">Snowboard profile</param>
         /// <param name="flex">Snowboard flex rating</param>
         /// <returns>Success view</returns>
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public IActionResult Create(string name, [FromForm] IFormFile image, decimal price, float size, string description, int brandId, Profile profile, byte flex) {
 

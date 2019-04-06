@@ -1,10 +1,11 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using SnowboardShop.Data.Models;
 using System;
 
 namespace SnowboardShop.Data {
-    public class SnowboardShopDbContext : IdentityDbContext {
+    public class SnowboardShopDbContext : IdentityDbContext<IdentityUser,IdentityRole, string> {
         public SnowboardShopDbContext(DbContextOptions<SnowboardShopDbContext> options)
             : base(options) {
         }
