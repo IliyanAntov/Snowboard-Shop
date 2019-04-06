@@ -4,9 +4,10 @@
     ViewData["Title"] = "Orders";
 }
 
-<h1>Orders</h1>
-
 @foreach (var order in Model.Orders) {
+    <div class="row" style="display: flex; flex-direction: column; justify-content: center; text-align: center;">
+        <h1>Order:</h1>
+    </div>
     <div class="container">
         <ul class="list-group list-group-horizontal">
             <li class="list-group-item">Name: @(order.FirstName + " " + order.LastName)</li>

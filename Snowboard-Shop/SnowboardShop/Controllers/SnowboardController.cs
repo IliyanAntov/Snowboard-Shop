@@ -72,8 +72,10 @@ namespace SnowboardShop.Controllers
 
             var imagePath = Path.Combine(hostingEnvironment.WebRootPath + "\\images", Path.GetFileName(image.FileName));
             image.CopyTo(new FileStream(imagePath, FileMode.Create));
-            
-            var snowboard = snowboardsService.CreateSnowboard(name, imagePath, price, size, description, brandId, profile, flex);
+
+            if (ModelState.IsValid) {
+                var snowboard = snowboardsService.CreateSnowboard(name, imagePath, price, size, description, brandId, profile, flex);
+            }
             return this.RedirectToAction("Success", "Home");
            
         }
