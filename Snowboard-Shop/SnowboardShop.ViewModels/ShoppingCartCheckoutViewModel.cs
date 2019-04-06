@@ -17,6 +17,8 @@ namespace SnowboardShop.ViewModels {
 
         public int ShoppingCartId { get; set; }
 
+        public string Username { get; set; }
+
         public decimal TotalPrice { get; set; }
 
     }

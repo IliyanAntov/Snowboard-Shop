@@ -45,6 +45,7 @@ namespace SnowboardShop.Controllers
             var totalPrice = cartsService.GetAllItemsInCart(id).Sum(i => i.Product.Price * i.Quantity); 
             var model = new ShoppingCartCheckoutViewModel() {
                 ShoppingCartId = id,
+                Username = this.User.Identity.Name,
                 TotalPrice = Math.Round(totalPrice, 2)
             };
             return View(model);
@@ -52,9 +53,9 @@ namespace SnowboardShop.Controllers
 
         [Authorize]
         [HttpPost]
-        public IActionResult Checkout(string firstName, string lastName, string phoneNumber, string city, string address, int shoppingCartId) {
+        public IActionResult Checkout(string firstName, string lastName, string phoneNumber, string city, string address, int shoppingCartId, string username) {
 
-            cartsService.PlaceOrder(firstName, lastName, phoneNumber, city, address, shoppingCartId);
+            cartsService.PlaceOrder(firstName, lastName, phoneNumber, city, address, shoppingCartId, username);
             return RedirectToAction("Cart", "Cart");
         }
 

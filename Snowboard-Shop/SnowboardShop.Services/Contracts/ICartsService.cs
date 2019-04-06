@@ -17,6 +17,6 @@ namespace SnowboardShop.Services.Contracts {
 
         List<CartItem> GetAllItemsInCart(int cartId);
 
-        int PlaceOrder(string firstName, string lastName, string phoneNumber, string city, string address, int shoppingCartId);
+        int PlaceOrder(string firstName, string lastName, string phoneNumber, string city, string address, int shoppingCartId, string username);
     }
 }

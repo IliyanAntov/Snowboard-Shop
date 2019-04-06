@@ -23,7 +23,9 @@ namespace SnowboardShop.Services {
 
         public int AddItem(int productId, string username) {
 
-            CreateCart(username);
+            if (this.context.ShoppingCarts.FirstOrDefault(c => c.User.UserName == username) == null) {
+                CreateCart(username);
+            }
 
             var shoppingCartId = this.context.ShoppingCarts.FirstOrDefault(c => c.User.UserName == username).Id;
 
@@ -78,7 +80,7 @@ namespace SnowboardShop.Services {
 
         }
 
-        public int PlaceOrder(string firstName, string lastName, string phoneNumber, string city, string address, int shoppingCartId) {
+        public int PlaceOrder(string firstName, string lastName, string phoneNumber, string city, string address, int shoppingCartId, string username) {
 
             var order = new Order() {
                 FirstName = firstName,
@@ -96,8 +98,12 @@ namespace SnowboardShop.Services {
                 this.context.Update(item);
             }
 
-            var user = this.context.ShoppingCarts.Include(c => c.User).FirstOrDefault(c => c.Id == shoppingCartId).User;
-            CreateCart(user.UserName);
+            var userCart = this.context.ShoppingCarts.Include(c => c.User).FirstOrDefault(c => c.User.UserName == username);
+            CreateCart(userCart.User.UserName);
+            userCart.User = null;
+            userCart.UserId = null;
+
+            this.context.Update(userCart);
 
             this.context.Orders.Add(order);
             context.SaveChanges();
@@ -114,6 +120,7 @@ namespace SnowboardShop.Services {
             context.SaveChanges();
 
         }
+
 
     }
 }

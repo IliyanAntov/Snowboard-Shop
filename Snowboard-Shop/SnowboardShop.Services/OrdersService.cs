@@ -27,7 +27,7 @@ namespace SnowboardShop.Services {
                     Address = order.Address,
                     City = order.City,
                     PhoneNumber = order.PhoneNumber,
-                    TotalPrice = items.Sum(i => i.Price * i.Quantity),
+                    TotalPrice = Math.Round(items.Sum(i => i.Price * i.Quantity), 2),
                     Items = items
                 };
                 orders.Add(model);
@@ -42,7 +42,7 @@ namespace SnowboardShop.Services {
                                   .Include(i => i.Product)
                                   .Select(i => new OrderItemViewModel() {
                                       Name = i.Product.Name,
-                                      Price = i.Product.Price,
+                                      Price = Math.Round(i.Product.Price, 2),
                                       Quantity = i.Quantity
                                   }).ToList();
             return items;
