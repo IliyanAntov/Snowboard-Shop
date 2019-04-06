@@ -28,8 +28,8 @@ namespace SnowboardShop.Services {
         public int CreateBrand(string name) {
             
             var brand = new Brand() { Name = name };
-            context.Brands.Add(brand);
-            context.SaveChanges();
+            this.context.Brands.Add(brand);
+            this.context.SaveChanges();
 
             return brand.Id;
         }

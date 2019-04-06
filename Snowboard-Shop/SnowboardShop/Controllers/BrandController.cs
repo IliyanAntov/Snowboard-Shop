@@ -10,18 +10,32 @@ namespace SnowboardShop.Controllers
 {
     public class BrandController : Controller
     {
+        /// <param name="service">Brands service</param>
         private IBrandsService service;
 
+        /// <summary>
+        /// Constructor method
+        /// </summary>
+        /// <param name="service">Brands service</param>
         public BrandController(IBrandsService service) {
             this.service = service;
         }
 
+        /// <summary>
+        /// Returns the Create view
+        /// </summary>
+        /// <returns>Create View</returns>
         [Authorize]
         public IActionResult Create()
         {
             return View();
         }
 
+        /// <summary>
+        /// Creates a brand and returns the Success view
+        /// </summary>
+        /// <param name="name">Brand name</param>
+        /// <returns>Success view</returns>
         [Authorize]
         [HttpPost]
         public IActionResult Create(string name) {

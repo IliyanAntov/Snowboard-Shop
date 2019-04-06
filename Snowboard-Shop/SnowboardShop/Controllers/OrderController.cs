@@ -11,12 +11,22 @@ namespace SnowboardShop.Controllers
 {
     public class OrderController : Controller
     {
+        /// <param name="ordersService">Orders service</param>
         private IOrdersService ordersService;
 
+        /// <summary>
+        /// Constructor method
+        /// </summary>
+        /// <param name="ordersService">Orders service</param>
         public OrderController(IOrdersService ordersService) {
             this.ordersService = ordersService;
         }
 
+
+        /// <summary>
+        /// Creates an OrderListViewModel and returns the Orders view
+        /// </summary>
+        /// <returns>OrdersView</returns>
         [Authorize]
         public IActionResult Orders()
         {
