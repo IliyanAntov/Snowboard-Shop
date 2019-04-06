@@ -15,7 +15,7 @@ namespace SnowboardShop.Data {
 
         public DbSet<Binding> Bindings { get; set; }
 
-        public DbSet<Brand> Brands { get; set; }
+        public virtual DbSet<Brand> Brands { get; set; }
 
         public DbSet<ShoppingCart> ShoppingCarts { get; set; }
 

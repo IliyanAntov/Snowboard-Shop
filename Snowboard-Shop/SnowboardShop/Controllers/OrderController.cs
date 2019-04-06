@@ -21,7 +21,7 @@ namespace SnowboardShop.Controllers
         public IActionResult Orders()
         {
             var model = new OrderListViewModel() {
-                 Orders = ordersService.GetViewModel() };
+                 Orders = ordersService.GetOrderViewModel() };
             return View(model);
         }
     }

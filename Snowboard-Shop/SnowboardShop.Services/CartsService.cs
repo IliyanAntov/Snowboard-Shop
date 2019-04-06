@@ -15,12 +15,23 @@ using System.Threading.Tasks;
 namespace SnowboardShop.Services {
     public class CartsService : ICartsService {
 
+        /// <param name="context">Application DbContext</param>
         private SnowboardShopDbContext context;
 
+        /// <summary>
+        /// Constructor method
+        /// </summary>
+        /// <param name="context">Application DbContext</param>
         public CartsService(SnowboardShopDbContext context) {
             this.context = context;
         }
 
+        /// <summary>
+        /// Adds an item to the user's cart
+        /// </summary>
+        /// <param name="productId">The product's id</param>
+        /// <param name="username">The user's username</param>
+        /// <returns>Shopping cart id</returns>
         public int AddItem(int productId, string username) {
 
             if (this.context.ShoppingCarts.FirstOrDefault(c => c.User.UserName == username) == null) {
@@ -49,13 +60,23 @@ namespace SnowboardShop.Services {
             return shoppingCartId;
         }
 
-        public int RemoveItem(int id) {
-            var item = this.context.CartItems.FirstOrDefault(i => i.Id == id);
+        /// <summary>
+        /// Removes an item from the user's cart
+        /// </summary>
+        /// <param name="productId">The id of the product to be removed</param>
+        /// <returns>The item's id</returns>
+        public int RemoveItem(int productId) {
+            var item = this.context.CartItems.FirstOrDefault(i => i.Id == productId);
             this.context.Remove(item);
             context.SaveChanges();
             return item.Id;
         }
 
+        /// <summary>
+        /// Maps all items in a cart to ShoppingCartItemViewModel, which contains their Id, Name, Quantity and Price
+        /// </summary>
+        /// <param name="cartId">Cart id</param>
+        /// <returns>A list of ShoppingCartItemViewModel, containing info about all items in a cart</returns>
         public List<ShoppingCartItemViewModel> GetViewModel(int cartId) {
             return this.context.CartItems.Where(c => c.ShoppingCartId == cartId && c.Placed == false)
                 .Select(i => new ShoppingCartItemViewModel() {
@@ -67,6 +88,11 @@ namespace SnowboardShop.Services {
 
         }
 
+        /// <summary>
+        /// Gets a user's cart id or creates a cart if one is not present
+        /// </summary>
+        /// <param name="username">The user's username</param>
+        /// <returns>User's cart id</returns>
         public int GetShoppingCartId(string username) {
 
             if (this.context.ShoppingCarts.FirstOrDefault(c => c.User.UserName == username) == null) {
@@ -75,11 +101,27 @@ namespace SnowboardShop.Services {
             return this.context.ShoppingCarts.FirstOrDefault(c => c.User.UserName == username).Id;
         }
 
+        /// <summary>
+        /// Gets a list of all items in a cart 
+        /// </summary>
+        /// <param name="cartId">Cart id</param>
+        /// <returns>A list of CartItem, containing all items in a cart</returns>
         public List<CartItem> GetAllItemsInCart(int cartId) {
             return this.context.CartItems.Include(i => i.Product).Where(i => i.ShoppingCartId == cartId).Where(i => i.Placed == false).ToList();
 
         }
 
+        /// <summary>
+        /// Places an order containing all of the items in a user's cart and emptying it
+        /// </summary>
+        /// <param name="firstName">Orderer's first name</param>
+        /// <param name="lastName">Orderer's last name</param>
+        /// <param name="phoneNumber">Orderer's phone number</param>
+        /// <param name="city">Orderer's city</param>
+        /// <param name="address">Orderer's address</param>
+        /// <param name="shoppingCartId">User's shopping cart id</param>
+        /// <param name="username">User's username</param>
+        /// <returns>Order id</returns>
         public int PlaceOrder(string firstName, string lastName, string phoneNumber, string city, string address, int shoppingCartId, string username) {
 
             var order = new Order() {
@@ -110,6 +152,10 @@ namespace SnowboardShop.Services {
             return order.Id;
         }
 
+        /// <summary>
+        /// Creates a cart for the given user and saves it to the database
+        /// </summary>
+        /// <param name="username">User's username</param>
         private void CreateCart(string username) {
 
             IdentityUser user = this.context.Users.FirstOrDefault(u => u.UserName == username);

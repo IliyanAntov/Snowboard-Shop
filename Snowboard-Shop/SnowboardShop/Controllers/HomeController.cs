@@ -21,7 +21,7 @@ namespace SnowboardShop.Controllers {
         }
         
         public IActionResult Shop() {
-            var model = new ShopPageViewModel() { Products = productsService.GetAll()};
+            var model = new ShopPageViewModel() { Products = productsService.GetAllProductsViewModel()};
             return View(model);
         }
 

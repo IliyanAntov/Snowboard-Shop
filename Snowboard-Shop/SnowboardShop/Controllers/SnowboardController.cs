@@ -27,12 +27,12 @@ namespace SnowboardShop.Controllers
 
         [Authorize]
         public IActionResult Create() {
-            var model = new CreateSnowboardViewModel() { Brands = brandsService.GetAll()};
+            var model = new CreateSnowboardViewModel() { Brands = brandsService.GetAllBrandsViewModel()};
             return View(model);
         }
 
         public IActionResult Details(int id) {
-            var model = snowboardsService.GetDetails(id);
+            var model = snowboardsService.GetDetailsViewModel(id);
             return this.View(model);
         }
 

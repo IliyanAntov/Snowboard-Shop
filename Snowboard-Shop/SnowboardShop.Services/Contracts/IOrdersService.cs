@@ -6,6 +6,6 @@ using System.Text;
 namespace SnowboardShop.Services.Contracts {
     public interface IOrdersService {
 
-        List<OrderSingleViewModel> GetViewModel();
+        List<OrderSingleViewModel> GetOrderViewModel();
     }
 }

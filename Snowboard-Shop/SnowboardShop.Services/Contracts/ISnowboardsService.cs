@@ -9,7 +9,7 @@ namespace SnowboardShop.Services.Contracts {
 
         int CreateSnowboard(string name, string imagePath, decimal price, float size, string description, int brandId, Profile Profile, byte Flex);
 
-        SnowboardDetailsViewModel GetDetails(int id);
+        SnowboardDetailsViewModel GetDetailsViewModel(int id);
 
     }
 }

@@ -8,6 +8,6 @@ namespace SnowboardShop.Services.Contracts {
 
         int CreateBrand(string name);
 
-        List<ListBrandsViewModel> GetAll();
+        List<ListBrandsViewModel> GetAllBrandsViewModel();
     }
 }

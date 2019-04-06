@@ -9,13 +9,24 @@ using System.Linq;
 namespace SnowboardShop.Services {
     public class BrandsService : IBrandsService {
 
+        /// <param name="context">Application DbContext</param>
         private SnowboardShopDbContext context;
 
+        /// <summary>
+        /// Constructor method
+        /// </summary>
+        /// <param name="context">Application DbContext</param>
         public BrandsService(SnowboardShopDbContext context) {
             this.context = context;
         }
-        public int CreateBrand(string name) {
 
+        /// <summary>
+        /// Creates a brand and adds it to the database
+        /// </summary>
+        /// <param name="name">Brand name</param>
+        /// <returns>Brand id</returns>
+        public int CreateBrand(string name) {
+            
             var brand = new Brand() { Name = name };
             context.Brands.Add(brand);
             context.SaveChanges();
@@ -23,7 +34,11 @@ namespace SnowboardShop.Services {
             return brand.Id;
         }
 
-        public List<ListBrandsViewModel> GetAll() {
+        /// <summary>
+        /// Maps all brands to ListBrandsViewModel, which contains their Id and Name
+        /// </summary>
+        /// <returns>A list of ListBrandsViewModel, containing info about all brands</returns>
+        public List<ListBrandsViewModel> GetAllBrandsViewModel() {
             return this.context.Brands.Select(b => new ListBrandsViewModel { Id = b.Id, Name = b.Name }).ToList();
         }
     }
