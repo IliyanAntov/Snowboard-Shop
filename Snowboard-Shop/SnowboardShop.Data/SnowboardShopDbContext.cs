@@ -20,6 +20,8 @@ namespace SnowboardShop.Data {
         public DbSet<ShoppingCart> ShoppingCarts { get; set; }
 
         public DbSet<CartItem> CartItems { get; set; }
+
+        public DbSet<Order> Orders { get; set; }
       
     }
 }

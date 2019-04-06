@@ -71,8 +71,32 @@ namespace SnowboardShop.Services {
                     Price = Math.Round(i.Product.Price, 2)
                 }).ToList();
 
+        }
 
-            
+        public int GetShoppingCartId(int itemId) {
+            return this.context.CartItems.FirstOrDefault(i => i.Id == itemId).ShoppingCartId;
+        }
+
+        public List<CartItem> GetAllItemsInCart(int cartId) {
+            return this.context.CartItems.Include(i => i.Product).Where(i => i.ShoppingCartId == cartId).ToList();
+
+        }
+
+        public int PlaceOrder(string firstName, string lastName, string phoneNumber, string city, string address, int shoppingCartId) {
+
+            var order = new Order() {
+                FirstName = firstName,
+                LastName = lastName,
+                PhoneNumber = phoneNumber,
+                City = city,
+                Address = address,
+                OrderDate = DateTime.UtcNow,
+                ShoppingCartId = shoppingCartId,
+                ShoppingCart = this.context.ShoppingCarts.FirstOrDefault(c => c.Id == shoppingCartId)
+            };
+            this.context.Orders.Add(order);
+            context.SaveChanges();
+            return order.Id;
         }
     }
 }
